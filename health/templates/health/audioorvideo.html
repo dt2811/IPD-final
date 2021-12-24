@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/audioorvideo.css' %}"> 
+   </head>
+<body>
+  
+    <main>
+          <div class="game-quiz-container">
+
+            <div class="game-details-container">
+            </div>
+            <h1 center>Analyse Emotions By:</h1>
+           <div class="game-options-container">
+
+             <span id="record-button">
+                
+                <a href="{% url 'audio'%}"><button  id="audio-button" class="button" value="Recording">Audio</button></a>
+                    </span>
+
+                 <span id="next-button">
+                    <a href="{% url 'video'%}"><button  id ="video-button"class="button" onclick="video.html">Video</button></a>
+                    </span>
+                 </span>
+             </div>
+             </div>
+    </main>
+   </body>
+</html>
