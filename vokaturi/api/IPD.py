@@ -14,15 +14,19 @@
 #	Angry: 0.001
 #	Fear: 0.000
 
+from . import Vokaturi
 import sys
+import os
 import scipy.io.wavfile
 
 sys.path.append("../api")
-import Vokaturi
+
 
 def analyse_audio(path):
+    path = "C:/Users/shrey/Desktop/projects/PythonModules"
     print("Loading library...")
-    Vokaturi.load(r"C:\Users\vighn\Desktop\mhw\vokaturi\lib\open\win\OpenVokaturi-3-4-win64.dll")
+    Vokaturi.load(os.path.join(
+        path, "../lib/open/win/OpenVokaturi-3-4-win64.dll"))
     print("Analyzed by: %s" % Vokaturi.versionAndLicense())
 
     print("Reading sound file...")
@@ -32,7 +36,7 @@ def analyse_audio(path):
 
     print("Allocating Vokaturi sample array...")
     buffer_length = len(samples)
-    print("   %d samples, %d channels" % (buffer_length, samples.ndim))
+    print("%d samples, %d channels" % (buffer_length, samples.ndim))
     c_buffer = Vokaturi.SampleArrayC(buffer_length)
     if samples.ndim == 1:  # mono
         c_buffer[:] = samples[:] / 32768.0

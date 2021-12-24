@@ -39,8 +39,8 @@
                             Hello, {{request.user}}!
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="color: #fefec8">
-                            <li><a class="dropdown-item" href="{% url 'audvid' %}">Analyse mood</a></li>
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li> 
+                            <li><a class="dropdown-item" href="{% url 'health:audvid' %}">Analyse mood</a></li>
+                            <li><a class="dropdown-item" href="{% url 'health:logout' %}">Logout</a></li> 
                         </ul>
                     </div>
                 </div>

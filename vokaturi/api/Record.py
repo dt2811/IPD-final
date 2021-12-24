@@ -1,13 +1,15 @@
 import pyaudio
 import wave
-import IPD
+from . import IPD
+
+
 def record(output_name):
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 44100
     RECORD_SECONDS = 5
-    WAVE_OUTPUT_FILENAME =output_name
+    WAVE_OUTPUT_FILENAME = output_name
 
     p = pyaudio.PyAudio()
 
@@ -37,6 +39,6 @@ def record(output_name):
     wf.setframerate(RATE)
     wf.writeframes(b''.join(frames))
     wf.close()
-    IPD.analyse_audio(r'C:\Users\vighn\Desktop\mhw\vokaturi\examples\output.wav')
+    IPD.analyse_audio(
+        r'C:\Users\shrey\Desktop\Projects\PythonModules\output.wav')
     return True
-record('output.wav') 
