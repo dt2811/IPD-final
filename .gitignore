@@ -1,1 +1,5 @@
 /env
+health/__pycache__
+Video_Model/__pycache__
+vokaturi/api/__pycache__
+health/migrations/__pycache__

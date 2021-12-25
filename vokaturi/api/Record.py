@@ -8,7 +8,7 @@ def record(output_name):
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 44100
-    RECORD_SECONDS = 5
+    RECORD_SECONDS = 30
     WAVE_OUTPUT_FILENAME = output_name
 
     p = pyaudio.PyAudio()
@@ -40,5 +40,5 @@ def record(output_name):
     wf.writeframes(b''.join(frames))
     wf.close()
     IPD.analyse_audio(
-        r'C:\Users\shrey\Desktop\Projects\PythonModules\output.wav')
+        r'C:\Users\dhrum\Desktop\IPD_backend\PythonModules\output.wav')
     return True

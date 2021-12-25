@@ -23,10 +23,11 @@ class EmotionProbabilities(ctypes.Structure):
 
 _library = None
 
-def load(path_to_Vokaturi_library):
+def load():
+	path_to_Vokaturi_library=r"C:\Users\dhrum\Desktop\IPD_backend\PythonModules\vokaturi\lib\open\win\OpenVokaturi-3-4-win64.dll"
 	global _library
-
-	_library = ctypes.CDLL(path_to_Vokaturi_library)
+    
+	_library = ctypes.CDLL( r"C:\Users\dhrum\Desktop\IPD_backend\PythonModules\vokaturi\lib\open\win\OpenVokaturi-3-4-win64.dll")
 
 	_library.VokaturiVoice_create.restype = ctypes.c_void_p
 	_library.VokaturiVoice_create.argtypes = [

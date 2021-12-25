@@ -9,7 +9,7 @@
   
     <main>
           <div class="game-quiz-container">
-
+            <h2>VIDEO ANALYSIS</h2>
             <div class="game-details-container">
               
                 <h1 id="question-no"> Question : <span id="question-number"></span> / 10</h1>
@@ -21,9 +21,12 @@
 
            <div class="game-options-container">
 
-             <span id="record-button">
-                    <button  id="Recording" class="button" value="Recording"><img src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v2.png"/>Start Video Recording</button>
-                    </span>
+            <span id="record-button">
+                <form  action="{% url 'health:video_record' %}">
+                <button  id="Recording" class="button" value="Recording" ><img src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v2.png"/>
+                    Start Recording</button>
+                </form>
+            </span>
 
                  <span id="next-button">
                     <button  id ="Next-Question"class="button" onclick="NextQuestion()">Next Question</button>

@@ -7,10 +7,11 @@
 <body onload="handleQuestions(0)">
   
     <main>
+        
           <div class="game-quiz-container">
-
+            <h2>AUDIO ANALYSIS</h2>
             <div class="game-details-container">
-              
+                
                 <h1 id="question-no"> Question : <span id="question-number"></span> / 10</h1>
             </div>
 
@@ -21,8 +22,8 @@
            <div class="game-options-container">
 
              <span id="record-button">
-                <form action="{% url 'health/audio' %}">
-                <button  id="Recording" class="button" value="Recording" onclick=><img src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v2.png"/>
+                <form  action="{% url 'health:audio_record' %}">
+                <button  id="Recording" class="button" value="Recording" ><img src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v2.png"/>
                     Start Recording</button>
                 </form>
             </span>

@@ -13,7 +13,6 @@
 #	Sad: 0.238
 #	Angry: 0.001
 #	Fear: 0.000
-
 from . import Vokaturi
 import sys
 import os
@@ -23,10 +22,9 @@ sys.path.append("../api")
 
 
 def analyse_audio(path):
-    path = "C:/Users/shrey/Desktop/projects/PythonModules"
+    #path = "C:/Users/shrey/Desktop/projects/PythonModules"
     print("Loading library...")
-    Vokaturi.load(os.path.join(
-        path, "../lib/open/win/OpenVokaturi-3-4-win64.dll"))
+    Vokaturi.load()
     print("Analyzed by: %s" % Vokaturi.versionAndLicense())
 
     print("Reading sound file...")

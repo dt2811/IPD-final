@@ -1,3 +1,4 @@
+from django import http
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
@@ -9,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .forms import CreateUserForm
 from vokaturi.api.Record import record
-
+from Video_Model import VideoAnalysis
 
 @login_required(login_url='login')
 def home(request):
@@ -78,11 +79,22 @@ def audvid(request):
 
 @login_required(login_url='login')
 def audio(request):
-    x = record("output.wav")
-    print(x)
+    #x = record("output.wav")
+    #print(x)
     context = {}
     return render(request, 'health/audio.html', context)
 
+
+def audio_record(request):
+    x = record("output.wav")
+    print(x)
+    context = {}
+    return HttpResponse("hello")
+
+def video_record(request):
+    VideoAnalysis.analyze_video()
+    context = {}
+    return HttpResponse("DONE")
 
 @login_required(login_url='login')
 def video(request):

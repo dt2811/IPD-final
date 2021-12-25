@@ -11,5 +11,7 @@ urlpatterns = [
     path('audvid/', views.audvid, name="audvid"),
     path('audio/', views.audio, name="audio"),
     path('video/', views.video, name="video"),
+    path('record_audio/',views.audio_record,name="audio_record"),
+    path('record_video/',views.video_record,name="video_record")
 
 ]
