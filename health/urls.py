@@ -12,6 +12,9 @@ urlpatterns = [
     path('audio/', views.audio, name="audio"),
     path('video/', views.video, name="video"),
     path('record_audio/',views.audio_record,name="audio_record"),
-    path('record_video/',views.video_record,name="video_record")
+    path('record_video/',views.video_record,name="video_record"),
+    #path('details/',views.getItemDetails,name="details"),
+    path("detail/<str:obj_id>/<str:user_id>/",views.getItemDetails,name="detail"),
+    path("like/<str:obj_id>/<str:user_id>/",views.like_Item,name="like"),
 
 ]

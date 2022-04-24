@@ -1,17 +1,19 @@
 {% load static %}
 <html>
+
 <head>
     <link rel="stylesheet" href="{% static 'css/audio.css' %}">
-      
-   </head>
+
+</head>
+
 <body onload="handleQuestions(0)">
-  
+
     <main>
-        
-          <div class="game-quiz-container">
+
+        <div class="game-quiz-container">
             <h2>AUDIO ANALYSIS</h2>
             <div class="game-details-container">
-                
+
                 <h1 id="question-no"> Question : <span id="question-number"></span> / 10</h1>
             </div>
 
@@ -19,26 +21,32 @@
                 <h1 id="display-question"></h1>
             </div>
 
-           <div class="game-options-container">
-
-             <span id="record-button">
-                <form  action="{% url 'health:audio_record' %}">
-                <button  id="Recording" class="button" value="Recording" ><img src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v2.png"/>
-                    Start Recording</button>
-                </form>
-            </span>
-                
-                 <span id="next-button">
-                    <button  id ="Next-Question"class="button" onclick="NextQuestion()">Next Question</button>
-                 </span>
-                <span id="submit-button">
-                    <button  id="Submit" class="button" value="Submit" >Submit</button>
-               
+            <div class="game-options-container">
+                <span id="record-button">
+                    <form action="{% url 'health:audio_record' %}">
+                        <button id="Recording" class="button" value="Recording"><img
+                                src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v2.png" />
+                            Start Recording</button>
+                    </form>
                 </span>
-             </div>
-             </div>
+            </div>
+            <div class="game-options-container">
+                <span id="next-button">
+                    <button id="Next-Question" class="button" onclick="PreviousQuestion()">Previous Question</button>
+                </span>
+                <span id="next-button">
+                    <button id="Next-Question" class="button" onclick="NextQuestion()">Next Question</button>
+                </span>
+
+                <span id="submit-button">
+                    <button id="Submit" class="button" value="Submit">Submit</button>
+
+                </span>
+            </div>
+        </div>
     </main>
 
-    <script type="text/javascript" src="{% static 'js/audio.js' %}"></script> 
-   </body>
+    <script type="text/javascript" src="{% static 'js/audio.js' %}"></script>
+</body>
+
 </html>

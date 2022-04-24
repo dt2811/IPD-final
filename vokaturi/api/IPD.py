@@ -58,6 +58,11 @@ def analyse_audio(path):
         print("Sad: %.3f" % (emotionProbabilities.sadness*100))
         print("Angry: %.3f" % (emotionProbabilities.anger*100))
         print("Fear: %.3f" % (emotionProbabilities.fear*100))
+        voice.destroy()
+        val={'neutral': emotionProbabilities.neutrality, 'happy': emotionProbabilities.happiness, 'sad': emotionProbabilities.sadness, 'angry':emotionProbabilities.anger, 'fear': emotionProbabilities.fear}
+        Keymax = max(zip(val.values(), val.keys()))[1]
+        print(Keymax)
+        return Keymax
     else:
         print("Not enough sonorancy to determine emotions")
 

@@ -83,9 +83,7 @@ let questionNumber = 1
 
 function NextQuestion() {
     console.log("Helloo i am working")
-    if(indexNumber==shuffledQuestions.length){
-        endQuiz()
-    }
+  
     const currentQuestion = shuffledQuestions[indexNumber]
     document.getElementById("question-number").innerHTML = questionNumber;
    
@@ -93,6 +91,17 @@ function NextQuestion() {
     indexNumber++
     questionNumber++
 
+
+}
+function PreviousQuestion() {
+    console.log("Helloo i am working")
+    indexNumber = (indexNumber - 1 + shuffledQuestions.length) % shuffledQuestions.length
+    questionNumber = (questionNumber - 1 + shuffledQuestions.length) % shuffledQuestions.length
+    const currentQuestion = shuffledQuestions[indexNumber]
+    document.getElementById("question-number").innerHTML = questionNumber;
+   
+    document.getElementById("display-question").innerHTML = currentQuestion.question;
+    
 
 }
 

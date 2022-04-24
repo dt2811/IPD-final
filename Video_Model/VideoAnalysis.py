@@ -26,5 +26,5 @@ def analyze_video():
         emotions.append(emot)
         
     print(f"Dominant Emotion of datasets : {statistics.mode(emotions)}")
+    return statistics.mode(emotions)
 
-analyze_video()

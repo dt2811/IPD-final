@@ -24,7 +24,7 @@
 </style>
 
 <head>
-    <nav class="navbar navbar-expand-lg" style="background-color: rgb(178, 224, 178)">
+    <nav class="navbar navbar-expand-lg" style="background-color: #fefec8">
         <div class="container-fluid">
             <a class="navbar-brand" href="#" style="color: black; font-weight: bold;">Mental Health Website</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -54,146 +54,41 @@
     <h2 style="margin-left:2%">Your recommendations : </h2>
     <br/>
     <div>
-        <h3 style="margin-left: 3%; color: black;">TV shows</h3>
+        <h3 style="margin-left: 3%; color: black;">Movies and Tv shows</h3>
         <div class="row" style="margin:2%;">
-            <div class="col">
-                <div class="card" style="background-color: black; cursor:pointer; height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
+            {% for value in movie  %}
+            
+            <div class="col-md-4">
+                <div class="card" style="background-color: black; cursor:pointer; height:5%">
+                    <img src={{value.data.poster_path}}  class="card-img-top" alt="..."   style="object-fit: cover;" height="200px" width="100px">
                     <center>
-                        <h5 class="card-title" style="color: black;">Card title</h5>
+                        <h4><a class="card-title" href="{% url 'health:detail' value.id id %}" style="color: black;">{{value.data.title}}</a></h4>
                     </center>
                 </div>
             </div>
-            <div class="col">
-                <div class="card" style="background-color: black; cursor:pointer; height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                    <center>
-                        <h5 class="card-title" style="color: black;">Card title</h5>
-                    </center>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" style="background-color: black; cursor:pointer; height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                    <center>
-                        <h5 class="card-title" style="color: black;">Card title</h5>
-                    </center>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" style="background-color: black; cursor:pointer; height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                    <center>
-                        <h5 class="card-title" style="color: black;">Card title</h5>
-                    </center>
-                </div>
-            </div>
+            
+            {% endfor %}
+           
         </div>
-        <div class="row" style="margin:2%;">
-            <div class="col">
-                <div class="card" style=" width:100%;background-color: black; cursor:pointer; height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                    <center>
-                        <h5 class="card-title" style="color: black;">Card title</h5>
-                    </center>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" style="background-color: black; cursor:pointer; height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                    <center>
-                        <h5 class="card-title" style="color: black;">Card title</h5>
-                    </center>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" style="background-color: black; cursor:pointer; height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                    <center>
-                        <h5 class="card-title" style="color: blacke;">Card title</h5>
-                    </center>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" style="background-color: black;cursor:pointer;height: 10%">
-                    <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                    <center>
-                        <h5 class="card-title" style="color: black;">Card title</h5>
-                    </center>
-                </div>
-            </div>
-        </div>
-        <br />
+
         <div>
-            <h3 style="margin-left: 3%; color: black;">Movies</h3>
+            <h3 style="margin-left: 3%; color: black;">Music</h3>
             <div class="row" style="margin:2%;">
-                <div class="col">
-                    <div class="card" style=" width:100%;background-color: black;cursor:pointer;height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
+                {% for value in movie  %}
+                
+                <div class="col-md-4">
+                    <div class="card" style="background-color: black; cursor:pointer; height:5%">
+                        <img src={{value.data.poster_path}}  class="card-img-top" alt="..."   style="object-fit: cover;" height="200px" width="100px">
                         <center>
-                            <h5 class="card-title" style="color: black;">Card title</h5>
+                            <h3><a class="card-title"  href="{% url 'health:detail' value.id id %}" style="color: black;">{{value.data.title}}</a><h3/>
                         </center>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card" style="background-color: black;cursor:pointer; height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                        <center>
-                            <h5 class="card-title" style="color: black;">Card title</h5>
-                        </center>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="background-color: black;cursor:pointer;height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                        <center>
-                            <h5 class="card-title" style="color: black;">Card title</h5>
-                        </center>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="background-color: black;cursor:pointer;height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                        <center>
-                            <h5 class="card-title" style="color: blacke;">Card title</h5>
-                        </center>
-                    </div>
-                </div>
+                
+                {% endfor %}
+               
             </div>
-            <div class="row" style="margin:2%;">
-                <div class="col">
-                    <div class="card" style=" width:100%;background-color: black;cursor:pointer;height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                        <center>
-                            <h5 class="card-title" style="color: black;">Card title</h5>
-                        </center>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="background-color: black;cursor:pointer;height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                        <center>
-                            <h5 class="card-title" style="color: black;">Card title</h5>
-                        </center>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="background-color: black;cursor:pointer; height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                        <center>
-                            <h5 class="card-title" style="color: black;">Card title</h5>
-                        </center>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="background-color: black;cursor:pointer;height: 10%">
-                        <img src="{% static 'images/background.jpg' %}" class="card-img-top" alt="...">
-                        <center>
-                            <h5 class="card-title" style="color: black;">Card title</h5>
-                        </center>
-                    </div>
-                </div>
-            </div>
+
         </div>
 </body>
 
