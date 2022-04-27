@@ -65,9 +65,9 @@
         <div class="row" style="margin:2%;">
             {% for value in recommendations  %}
             
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="card" style="background-color: black; cursor:pointer; height:5%">
-                    <img src={{value.data.poster_path}}  class="card-img-top" alt="..."   style="object-fit: cover;" height="200px" width="100px">
+                    <img src={{value.data.poster_path}}  class="card-img-top" alt="..."   style="width: 200px;height: 300px;object-fit: contain;">
                     <center>
                         <h4><a class="card-title" href="{% url 'health:detail' value.id user_id %}"  style="color: black;">{{value.data.title}}</a></h4>
                     </center>
