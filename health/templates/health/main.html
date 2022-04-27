@@ -69,12 +69,12 @@
         <div class="row" style="margin:2%;">
             {% for value in movie %}
 
-            <div class="col-md-2">
-                <div class="card" style="background-color: black; cursor:pointer; height:5%">
+            <div class="col-md-2" style="margin: 1%;">
+                <div class="card" style="background-color: #bce4e3; cursor:pointer; height:5%">
                     <img src={{value.data.poster_path}}  alt="..." style="width: 200px;height: 300px;object-fit: contain;">
                     <center>
                         <h4><a class="card-title" href="{% url 'health:detail' value.id id %}"
-                                style="color: black;">{{value.data.title}}</a></h4>
+                                style="color: black;text-decoration: none;">{{value.data.title}}</a></h4>
                     </center>
                 </div>
             </div>
@@ -88,12 +88,12 @@
             <div class="row" style="margin:2%;">
                 {% for value in music %}
 
-                <div class="col-md-2">
-                    <div class="card" style="background-color: black; cursor:pointer; height:5%">
+                <div class="col-md-2" style="margin: 1%;">
+                    <div class="card" style="background-color: #bce4e3;; cursor:pointer; height:5%">
                         <img src={{value.data.poster_path}} class="card-img-top" alt="..." style="width: 200px;height: 300px;object-fit: contain;">
                         <center>
                             <h3><a class="card-title" href="{% url 'health:detail' value.id id %}"
-                                    style="color: black;">{{value.data.title}}</a>
+                                    style="color: black; text-decoration: none;">{{value.data.title}}</a>
                                 <h3 />
                         </center>
                     </div>

@@ -54,38 +54,44 @@
 </header>
 
 <body style="background-color: #bce4e3;">
-    <aside
-        style="float: right; height: 100%; margin-top: 3.5%; width: 28%;background-color: #bce4e3; border-color:black;">
+
+    <main style="background-color: #bce4e3;">
+        <h2 style="margin-left: 2%; color:black; margin-top: 1%;">{{mainData.title}} </h2>
+        <div class="row">
+            <img src={{mainData.poster_path}} style="margin-left: 2%;width: 500px;height: 600px;"></img>
+            <div class="card" style=" margin-left: 2%; margin-top: 1%;width: 50%;background-color: #bce4e3;">
+                <div class="card-body" style=" background-color: #bce4e3;">
+                    <h3 class="card-title" style="margin-bottom: 3%; color:black;">{{mainData.title}}
+                        &nbsp;<small>(release date : {{mainData.release_date}})</small></h3>
+                    <h5 class="card-title" style="line-height: 1.7; word-spacing: 10px; color:black;"> <span
+                            style="font-weight: bold; font-size: 25px; color: black;">Overview:</span>
+                        {{mainData.overview}}.</h5>
+                    <center>
+                        <form action="{% url 'health:like' obj_id user_id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" style="width: 70%; margin-top: 1%;" class="btn btn-primary"
+                                value="Like" />
+                        </form>
+                    </center>
+                </div>
+            </div>
+        </div>
         <h3 style="margin-left: 2%; margin-top: 2%; color:black;">Recommendations
             <hr style="color:black; margin-top: 0; height: 2px;">
             </hr>
         </h3>
-        {% for value in recommendations  %}
-        <div class="card" style="width: 18rem;color: black; margin: 5%;">
-            <img class="card-img-top" src={{value.data.poster_path}} alt="Card image cap" height="10%" >
-            <div class="card-body" style="background-color: black; border: white 2px solid;">
-                <a  href="{% url 'health:detail' value.id user_id %}" class="card-text" style="color:white;">{{value.data.title}}</a>
+        <div class="row" style="margin:2%;">
+            {% for value in recommendations %}
+            <div class="col-md-4" >
+                <div class="card" style="width: 18rem;color: black; margin: 5%;">
+                    <img class="card-img-top" src={{value.data.poster_path}} alt="Card image cap" height="5%" >
+                    <div class="card-body" style="background-color: black; ">
+                        <a href="{% url 'health:detail' value.id user_id %}" class="card-text"
+                            style="color:white;text-decoration: none;">{{value.data.title}}</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        {% endfor %}
-    </aside>
-    <main style="background-color: #bce4e3;">
-        <h2 style="margin-left: 2%; color:black; margin-top: 1%;">{{mainData.title}} </h2>
-        <img height="80%" width="70%" style="margin-left: 2%;" src={{mainData.poster_path}}
-            frameborder="1" gesture="media" allow="encrypted-media" allowfullscreen></img>
-        <div class="card" style="width: 70%; margin-left: 2%; margin-top: 1%; background-color: rgb(37, 36, 36);">
-            <div class="card-body" style=" background-color: #bce4e3;">
-                <h3 class="card-title" style="margin-bottom: 3%; color:black;">{{mainData.title}}
-                    &nbsp;<small>(release date : {{mainData.release_date}})</small></h3>
-                <h5 class="card-title" style="line-height: 1.7; word-spacing: 10px; color:black;"> <span
-                        style="font-weight: bold; font-size: 25px; color: black;">Overview:</span> {{mainData.overview}}.</h5>
-                <center>
-                    <form action="{% url 'health:like' obj_id user_id %}" method="post">
-                        {% csrf_token %}
-                        <input type="submit" style="width: 70%; margin-top: 1%;" class="btn btn-primary" value="Like"/>
-                      </form>
-                </center>
-            </div>
+            {% endfor %}
         </div>
     </main>
 
