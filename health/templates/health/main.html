@@ -26,67 +26,83 @@
 <head>
     <nav class="navbar navbar-expand-lg" style="background-color: #fefec8">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#" style="color: black; font-weight: bold;">Mental Health Website</a>
+            <a class="navbar-brand" href="#" style="color: black; font-weight: bold;">Mood boosting Website</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-                <div class="d-flex">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 50px; color: black; font-weight: bold; border-color: black;">
-                            Hello, {{request.user}}!
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="color: #fefec8">
-                            <li><a class="dropdown-item" href="{% url 'health:audvid' %}">Analyse mood</a></li>
-                            <li><a class="dropdown-item" href="{% url 'health:logout' %}">Logout</a></li> 
-                        </ul>
-                    </div>
+            <div class="d-flex">
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        style="margin-right: 50px; color: black; font-weight: bold; border-color: black;">
+                        Hello, {{request.user}}!
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="color: #fefec8">
+                        <li><a class="dropdown-item" href="{% url 'health:audvid' %}">Analyse mood</a></li>
+                        <li><a class="dropdown-item" href="{% url 'health:logout' %}">Logout</a></li>
+                    </ul>
                 </div>
             </div>
+        </div>
         </div>
     </nav>
 </head>
 
 <body style="background-color: #bce4e3;">
     <br />
+    <h2 style="margin-left:2%">Emotion {{emotion}}</h2>
+    <br />
+    <form method="POST" action="{% url 'health:search' id %}" style="width:60%; margin-left:2%;">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <h3 style="margin-right:1%;">Search : </h3>
+            <input type="text" name="searchquery" placeholder="Search..." class="form-control">
+        </div>
+    </form>
+    <br />
     <h2 style="margin-left:2%">Your recommendations : </h2>
-    <br/>
+    <br />
     <div>
         <h3 style="margin-left: 3%; color: black;">Movies and Tv shows</h3>
         <div class="row" style="margin:2%;">
-            {% for value in movie  %}
-            
+            {% for value in movie %}
+
             <div class="col-md-4">
                 <div class="card" style="background-color: black; cursor:pointer; height:5%">
-                    <img src={{value.data.poster_path}}  class="card-img-top" alt="..."   style="object-fit: cover;" height="200px" width="100px">
+                    <img src={{value.data.poster_path}} class="card-img-top" alt="..." style="object-fit: cover;"
+                        height="200px" width="100px">
                     <center>
-                        <h4><a class="card-title" href="{% url 'health:detail' value.id id %}" style="color: black;">{{value.data.title}}</a></h4>
+                        <h4><a class="card-title" href="{% url 'health:detail' value.id id %}"
+                                style="color: black;">{{value.data.title}}</a></h4>
                     </center>
                 </div>
             </div>
-            
+
             {% endfor %}
-           
+
         </div>
 
         <div>
             <h3 style="margin-left: 3%; color: black;">Music</h3>
             <div class="row" style="margin:2%;">
-                {% for value in movie  %}
-                
+                {% for value in music %}
+
                 <div class="col-md-4">
                     <div class="card" style="background-color: black; cursor:pointer; height:5%">
-                        <img src={{value.data.poster_path}}  class="card-img-top" alt="..."   style="object-fit: cover;" height="200px" width="100px">
+                        <img src={{value.data.poster_path}} class="card-img-top" alt="..." style="object-fit: cover;"
+                            height="200px" width="100px">
                         <center>
-                            <h3><a class="card-title"  href="{% url 'health:detail' value.id id %}" style="color: black;">{{value.data.title}}</a><h3/>
+                            <h3><a class="card-title" href="{% url 'health:detail' value.id id %}"
+                                    style="color: black;">{{value.data.title}}</a>
+                                <h3 />
                         </center>
                     </div>
                 </div>
-                
+
                 {% endfor %}
-               
+
             </div>
 
         </div>

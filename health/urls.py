@@ -16,5 +16,6 @@ urlpatterns = [
     #path('details/',views.getItemDetails,name="details"),
     path("detail/<str:obj_id>/<str:user_id>/",views.getItemDetails,name="detail"),
     path("like/<str:obj_id>/<str:user_id>/",views.like_Item,name="like"),
+    path("search/<str:id>/",views.searchbar,name="search"),
 
 ]

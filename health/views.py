@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from recombee_api_client.api_client import RecombeeClient
 from recombee_api_client.api_requests import AddUser,SetUserValues,ListUsers,RecommendItemsToItem,AddDetailView,AddBookmark,AddPurchase
-from recombee_api_client.api_requests import RecommendItemsToUser,Batch,GetItemValues
+from recombee_api_client.api_requests import RecommendItemsToUser,Batch,GetItemValues,SearchItems
 
 from health.models import Profile
 from django.contrib.auth.models import auth, User
@@ -102,7 +102,7 @@ def audio_record(request):
         elif(data[i]['data']['type']=='Music'):
             music.append(data[i])
     print(data)
-    context = {'data':data,"id":user_id,"movie":movieAndTvshow,"music":music}
+    context = {'data':data,"id":user_id,"movie":movieAndTvshow,"music":music,"emotion":emotion}
     return render(request,'health/main.html', context)
 
 def video_record(request):
@@ -116,9 +116,10 @@ def video_record(request):
          data[i]['data']['poster_path']="https://image.tmdb.org/t/p/original"+data[i]['data']['poster_path']
          movieAndTvshow.append(data[i])
         elif(data[i]['data']['type']=='Music'):
+            print("MUSIC ",data[i])
             music.append(data[i])
-    print(data)
-    context = {'data':data,"id":user_id,"movie":movieAndTvshow,"music":music}
+    #print(data)
+    context = {'data':data,"id":user_id,"movie":movieAndTvshow,"music":music,"emotion":emotion}
     return render(request,'health/main.html', context)
 
 @login_required(login_url='login')
@@ -182,8 +183,8 @@ def getUserId(username,emotion):
     return uid
 
 def get_user_item_recommendation(item_id,user_id):
-    item_id=int(item_id)
-    user_id=int(user_id)
+    item_id=item_id
+    user_id=user_id
     
     client = RecombeeClient("abcs-dev", "FoS65UOrCdnud6K3OC6uwGwIDQyzDYGst0dfQcRvzFHpJXBgaxuiphOTEwQJJIgH")
     client.send(AddDetailView(user_id, item_id))
@@ -202,10 +203,11 @@ def get_user_item_recommendation(item_id,user_id):
     return final_data
 
 def singleItemDetails(id):
-    id=int(id)
+    id=id
     client = RecombeeClient("abcs-dev", "FoS65UOrCdnud6K3OC6uwGwIDQyzDYGst0dfQcRvzFHpJXBgaxuiphOTEwQJJIgH")
     data=client.send(GetItemValues(id))
-    data['poster_path']="https://image.tmdb.org/t/p/original"+data['poster_path']
+    if(data['type']=='TvShow' or data['type']=='Movie'):
+     data['poster_path']="https://image.tmdb.org/t/p/original"+data['poster_path']
     print(data)
     return data
 
@@ -225,4 +227,38 @@ def like_Item(request,obj_id,user_id):
     context={"obj_id":obj_id,"user_id":user_id,"recommendations":final_recommendations,"mainData":data}
     return render(request, 'health/detail.html', context)
     
+def searchbar(request,id):
+     print('hello bro')
+     client = RecombeeClient("abcs-dev", "FoS65UOrCdnud6K3OC6uwGwIDQyzDYGst0dfQcRvzFHpJXBgaxuiphOTEwQJJIgH")    
+     userid=id
+     search_query=request.POST.get('searchquery')
+     
+     
+     res = client.send(SearchItems(userid, search_query, 50))
+     data=res['recomms']
+     product_ids=[]
+    
+     for i in range(0,len(data)):
+         #print(data[i])
+         product_ids.append(GetItemValues(data[i]['id']))
+     recommendations=client.send(Batch(product_ids))
+     final_data=[]
+     for i in range(0,len(recommendations)):
+         final_data.append({"id":data[i]['id'],"data":recommendations[i]['json']})
+     final_recommendations=[]
+     for i in range(0,len(final_data)):
+         if(final_data[i]['data']['type']=='TvShow' or final_data[i]['data']['type']=='Movie'):
+             final_data[i]['data']['poster_path']="https://image.tmdb.org/t/p/original"+final_data[i]['data']['poster_path']
+         final_recommendations.append(final_data[i])
+    
+     context={"user_id":id,"recommendations":final_recommendations}   
+      #context={"user_id":id,"recommendations":[]}
+     return render(request, 'health/Search.html', context)
+     
+       
+
+     
+     
+     
+     
 
